@@ -10,6 +10,7 @@ class Review extends Model
     use HasFactory;
 
     protected $fillable = ['rating', 'comment', 'user_id', 'movie_id'];
+    protected $casts = ['rating' => 'integer'];
 
     public function user()
     {

@@ -11,18 +11,28 @@ class Movie extends Model
     use HasFactory;
 
     protected $fillable = ['title', 'description', 'thumbnail', 'release_date', 'genre'];
+    protected $casts = ['release_date' => 'date'];
 
-    public function reviews() {
+    public function reviews()
+    {
         return $this->hasMany(Review::class);
     }
-    
-    protected function averageRating(): Attribute {
+
+    public function scopeSearch($query, $search)
+    {
+        return $query->where('title', 'like', "%$search%")
+            ->orWhere('genre', 'like', "%$search%");
+    }
+
+    protected function averageRating(): Attribute
+    {
         return Attribute::make(
             get: fn() => $this->reviews()->avg('rating') ?? 0
         );
     }
-    
-    protected function totalReviews(): Attribute {
+
+    protected function totalReviews(): Attribute
+    {
         return Attribute::make(
             get: fn() => $this->reviews()->count()
         );

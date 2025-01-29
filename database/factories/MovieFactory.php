@@ -14,10 +14,14 @@ class MovieFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition(): array
+    public function definition()
     {
         return [
-            //
+            'title' => $this->faker->sentence,
+            'description' => $this->faker->paragraph,
+            'thumbnail' => $this->faker->imageUrl(),
+            'release_date' => $this->faker->date,
+            'genre' => $this->faker->randomElement(['Action', 'Comedy', 'Drama']),
         ];
     }
 }

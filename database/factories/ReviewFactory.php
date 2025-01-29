@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Movie;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -14,10 +16,13 @@ class ReviewFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition(): array
+    public function definition()
     {
         return [
-            //
+            'rating' => $this->faker->numberBetween(1, 5),
+            'comment' => $this->faker->optional()->paragraph,
+            'user_id' => User::factory(),
+            'movie_id' => Movie::factory(),
         ];
     }
 }
