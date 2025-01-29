@@ -20,20 +20,21 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
-    
 });
-Route::post('/register', [AuthController::class, 'register']);
-Route::post('/login', [AuthController::class, 'login']);
 
-Route::middleware('auth:sanctum')->group(function () {
-    Route::post('/movies/{movie}/reviews', [ReviewController::class, 'store'])
-        ->middleware('approved');
-    
-    // Admin routes
-    Route::prefix('admin')->middleware('can:manage-content')->group(function () {
-        Route::post('/users/{user}/approve', [AdminController::class, 'approveUser']);
-        Route::apiResource('movies', MovieController::class)->except(['index', 'show']);
+Route::prefix('v1')->group(function () {
+    Route::post('/register', [AuthController::class, 'register']);
+    Route::post('/login', [AuthController::class, 'login']);
+
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::post('/movies/{movie}/reviews', [ReviewController::class, 'store'])
+            ->middleware('approved');
+
+        Route::prefix('admin')->middleware('can:manage-content')->group(function () {
+            Route::post('/users/{user}/approve', [AdminController::class, 'approveUser']);
+            Route::apiResource('movies', MovieController::class)->except(['index', 'show']);
+        });
     });
-});
 
-Route::apiResource('movies', MovieController::class)->only(['index', 'show']);
+    Route::apiResource('movies', MovieController::class)->only(['index', 'show']);
+});
