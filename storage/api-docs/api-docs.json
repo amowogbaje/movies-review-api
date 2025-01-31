@@ -572,14 +572,14 @@
                 ]
             }
         },
-        "/api/v1/movies/{id}": {
+        "/api/v1/movies/:id": {
             "get": {
                 "tags": [
                     "Movies"
                 ],
                 "summary": "Show Movie Details",
                 "description": "Retrieve details of a specific movie along with reviews. Requires authentication.",
-                "operationId": "8e5a3d0fa166026d56314a3e9e99f8db",
+                "operationId": "b71e07747928b6c13ab4703c56c802c4",
                 "parameters": [
                     {
                         "name": "id",
@@ -690,16 +690,196 @@
                         }
                     }
                 }
+            },
+            "put": {
+                "tags": [
+                    "Movies"
+                ],
+                "summary": "Update a movie",
+                "description": "Updates an existing movie record.",
+                "operationId": "5a47f0567b31f2640c0ed08b98d4218f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Movie ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 4
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "title",
+                                    "description",
+                                    "thumbnail",
+                                    "release_date",
+                                    "genre"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "type": "string",
+                                        "example": "Inception Geeno Updated"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "An updated description."
+                                    },
+                                    "thumbnail": {
+                                        "type": "string",
+                                        "format": "url",
+                                        "example": "https://example.com/inception_updated.jpg"
+                                    },
+                                    "release_date": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2010-07-16"
+                                    },
+                                    "genre": {
+                                        "type": "string",
+                                        "example": "Science Fiction"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Movie updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Movie updated successfully"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 4
+                                                },
+                                                "title": {
+                                                    "type": "string",
+                                                    "example": "Inception Geeno Updated"
+                                                },
+                                                "description": {
+                                                    "type": "string",
+                                                    "example": "An updated description."
+                                                },
+                                                "thumbnail": {
+                                                    "type": "string",
+                                                    "example": "https://example.com/inception_updated.jpg"
+                                                },
+                                                "release_date": {
+                                                    "type": "string",
+                                                    "example": "2010-07-16"
+                                                },
+                                                "genre": {
+                                                    "type": "string",
+                                                    "example": "Science Fiction"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Validation Error"
+                                        },
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized - Invalid or missing token",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthorized"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Failed to update movie",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Failed to update movie. Please try again."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             }
         },
-        "/api/v1/movies/{id}/reviews": {
+        "/api/v1/movies/:id/reviews": {
             "post": {
                 "tags": [
                     "Movies"
                 ],
                 "summary": "Submit a Review for a Movie",
                 "description": "Submit a rating and comment for a specific movie. Requires authentication.",
-                "operationId": "f5e96d7690834ed00310e77451080161",
+                "operationId": "5199a11bc67a4aa2f54a845729908300",
                 "parameters": [
                     {
                         "name": "id",
@@ -869,14 +1049,14 @@
                 ]
             }
         },
-        "/api/v1/admin/users/{id}/approve": {
+        "/api/v1/admin/users/:id/approve": {
             "post": {
                 "tags": [
                     "Admin"
                 ],
                 "summary": "Approve a user",
                 "description": "Approves a user by setting `is_approved` to true. Requires admin authorization.",
-                "operationId": "ef4f15d24b747cc113c6ac3c55da648b",
+                "operationId": "5a2f7dd91eec62765be7e5b53367b564",
                 "parameters": [
                     {
                         "name": "id",

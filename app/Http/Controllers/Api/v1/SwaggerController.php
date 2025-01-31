@@ -255,7 +255,7 @@ class SwaggerController extends Controller
     public function createMoviesEndpointDocs() {}
     /**
      * @OA\Put(
-     *     path="/api/v1/movies/{id}",
+     *     path="/api/v1/movies/:id",
      *     summary="Update a movie",
      *     description="Updates an existing movie record.",
      *     tags={"Movies"},
@@ -327,7 +327,7 @@ class SwaggerController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/api/v1/movies/{id}",
+     *     path="/api/v1/movies/:id",
      *     summary="Show Movie Details",
      *     description="Retrieve details of a specific movie along with reviews. Requires authentication.",
      *     tags={"Movies"},
@@ -376,7 +376,7 @@ class SwaggerController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/api/v1/movies/{id}/reviews",
+     *     path="/api/v1/movies/:id/reviews",
      *     summary="Submit a Review for a Movie",
      *     description="Submit a rating and comment for a specific movie. Requires authentication.",
      *     tags={"Movies"},
@@ -450,7 +450,7 @@ class SwaggerController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/api/v1/admin/users/{id}/approve",
+     *     path="/api/v1/admin/users/:id/approve",
      *     summary="Approve a user",
      *     description="Approves a user by setting `is_approved` to true. Requires admin authorization.",
      *     tags={"Admin"},
