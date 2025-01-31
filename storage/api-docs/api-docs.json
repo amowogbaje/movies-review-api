@@ -572,132 +572,14 @@
                 ]
             }
         },
-        "/api/v1/movies/:id": {
-            "get": {
-                "tags": [
-                    "Movies"
-                ],
-                "summary": "Show Movie Details",
-                "description": "Retrieve details of a specific movie along with reviews. Requires authentication.",
-                "operationId": "b71e07747928b6c13ab4703c56c802c4",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "Movie ID",
-                        "required": true,
-                        "schema": {
-                            "type": "integer",
-                            "example": 4
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Movie retrieved successfully",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "status": {
-                                            "type": "string",
-                                            "example": "success"
-                                        },
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Movie retrieved"
-                                        },
-                                        "data": {
-                                            "properties": {
-                                                "movie": {
-                                                    "properties": {
-                                                        "id": {
-                                                            "type": "integer",
-                                                            "example": 4
-                                                        },
-                                                        "title": {
-                                                            "type": "string",
-                                                            "example": "Inception Geeno"
-                                                        },
-                                                        "description": {
-                                                            "type": "string",
-                                                            "example": "A mind-bending thriller about dreams within dreams."
-                                                        },
-                                                        "thumbnail": {
-                                                            "type": "string",
-                                                            "format": "url",
-                                                            "example": "https://example.com/inception.jpg"
-                                                        },
-                                                        "release_date": {
-                                                            "type": "string",
-                                                            "format": "date",
-                                                            "example": "2010-07-16"
-                                                        },
-                                                        "genre": {
-                                                            "type": "string",
-                                                            "example": "Science Fiction"
-                                                        },
-                                                        "rating": {
-                                                            "properties": {
-                                                                "average": {
-                                                                    "type": "number",
-                                                                    "format": "float",
-                                                                    "example": 0
-                                                                },
-                                                                "count": {
-                                                                    "type": "integer",
-                                                                    "example": 0
-                                                                }
-                                                            },
-                                                            "type": "object"
-                                                        }
-                                                    },
-                                                    "type": "object"
-                                                },
-                                                "reviews": {
-                                                    "type": "array",
-                                                    "items": {
-                                                        "type": "object"
-                                                    }
-                                                }
-                                            },
-                                            "type": "object"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Movie not found",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "status": {
-                                            "type": "string",
-                                            "example": "error"
-                                        },
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Movie not found"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
+        "/api/v1/admin/movies/:id": {
             "put": {
                 "tags": [
                     "Movies"
                 ],
                 "summary": "Update a movie",
                 "description": "Updates an existing movie record.",
-                "operationId": "5a47f0567b31f2640c0ed08b98d4218f",
+                "operationId": "084c17beb2233c99035ac92b4382fb44",
                 "parameters": [
                     {
                         "name": "id",
@@ -872,14 +754,232 @@
                 ]
             }
         },
-        "/api/v1/movies/:id/reviews": {
+        "/api/v1/movies/:id": {
+            "get": {
+                "tags": [
+                    "Movies"
+                ],
+                "summary": "Show Movie Details",
+                "description": "Retrieve details of a specific movie along with reviews. Requires authentication.",
+                "operationId": "b71e07747928b6c13ab4703c56c802c4",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Movie ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 4
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Movie retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Movie retrieved"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "movie": {
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "integer",
+                                                            "example": 4
+                                                        },
+                                                        "title": {
+                                                            "type": "string",
+                                                            "example": "Inception Geeno"
+                                                        },
+                                                        "description": {
+                                                            "type": "string",
+                                                            "example": "A mind-bending thriller about dreams within dreams."
+                                                        },
+                                                        "thumbnail": {
+                                                            "type": "string",
+                                                            "format": "url",
+                                                            "example": "https://example.com/inception.jpg"
+                                                        },
+                                                        "release_date": {
+                                                            "type": "string",
+                                                            "format": "date",
+                                                            "example": "2010-07-16"
+                                                        },
+                                                        "genre": {
+                                                            "type": "string",
+                                                            "example": "Science Fiction"
+                                                        },
+                                                        "rating": {
+                                                            "properties": {
+                                                                "average": {
+                                                                    "type": "number",
+                                                                    "format": "float",
+                                                                    "example": 0
+                                                                },
+                                                                "count": {
+                                                                    "type": "integer",
+                                                                    "example": 0
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "reviews": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Movie not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Movie not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Movies"
+                ],
+                "summary": "Delete a movie",
+                "description": "Deletes a specific movie by its ID.",
+                "operationId": "bfc2c5b44b13218b5438f4a06eb838bb",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the movie to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Movie deleted successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Movie deleted successfully"
+                                        },
+                                        "data": {
+                                            "type": "null",
+                                            "example": null
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Movie not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Movie not found"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {}
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Failed to delete movie",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Failed to delete movie. Please try again."
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {}
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/admin/movies/:id/reviews": {
             "post": {
                 "tags": [
                     "Movies"
                 ],
                 "summary": "Submit a Review for a Movie",
                 "description": "Submit a rating and comment for a specific movie. Requires authentication.",
-                "operationId": "5199a11bc67a4aa2f54a845729908300",
+                "operationId": "2220fc8b0fb58ff90070e74a060d8421",
                 "parameters": [
                     {
                         "name": "id",

@@ -46,18 +46,29 @@ class MovieController extends Controller
         }
     }
 
-    public function update(MovieUpdateRequest $request, Movie $movie)
+    public function update(MovieStoreRequest $request, Movie $movie)
     {
         try {
-            $movie->update($request->validated());
-            return $this->success('Movie updated successfully', new MovieResource($movie), 200);
+            $validated = $request->validated();
+
+            // Ensure the title is unique except for the current movie
+            if (isset($validated['title']) && $movie->title !== $validated['title']) {
+                $request->validate([
+                    'title' => 'unique:movies,title,' . $movie->id,
+                ]);
+            }
+
+            $movie->update($validated);
+
+            return $this->success('Movie updated successfully', new MovieResource($movie));
         } catch (ValidationException $e) {
             return $this->error('Validation Error', $e->errors(), 422);
         } catch (Exception $e) {
             Log::error("Movie Update Error: " . $e->getMessage());
-            return $this->error('Failed to update movie. Please try again.', $e->getMessage(), 500);
+            return $this->error('Failed to update movie. Please try again.', [], 500);
         }
     }
+
 
 
     public function show($id)
@@ -76,6 +87,20 @@ class MovieController extends Controller
         } catch (Exception $e) {
             Log::error("Movie Show Error: " . $e->getMessage());
             return $this->error('Failed to retrieve movie details. Please try again.', $e->getMessage(), 500);
+        }
+    }
+
+    public function destroy(Movie $movie)
+    {
+        try {
+            $movie->delete();
+            return $this->success('Movie deleted successfully', null, 200);
+        } catch (ModelNotFoundException $e) {
+            Log::error("Movie Not Found: {$e->getMessage()}");
+            return $this->error('Movie not found', [], 404);
+        } catch (Exception $e) {
+            Log::error("Movie Deletion Error: {$e->getMessage()}");
+            return $this->error('Failed to delete movie. Please try again.', [], 500);
         }
     }
 }

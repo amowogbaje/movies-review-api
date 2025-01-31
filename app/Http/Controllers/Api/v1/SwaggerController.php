@@ -255,7 +255,7 @@ class SwaggerController extends Controller
     public function createMoviesEndpointDocs() {}
     /**
      * @OA\Put(
-     *     path="/api/v1/movies/:id",
+     *     path="/api/v1/admin/movies/:id",
      *     summary="Update a movie",
      *     description="Updates an existing movie record.",
      *     tags={"Movies"},
@@ -375,8 +375,55 @@ class SwaggerController extends Controller
 
 
     /**
+     * @OA\Delete(
+     *     path="/api/v1/movies/:id",
+     *     summary="Delete a movie",
+     *     description="Deletes a specific movie by its ID.",
+     *     tags={"Movies"},
+     *     security={{"bearerAuth":{}}},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         description="ID of the movie to delete",
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Movie deleted successfully",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="status", type="string", example="success"),
+     *             @OA\Property(property="message", type="string", example="Movie deleted successfully"),
+     *             @OA\Property(property="data", type="null", example=null)
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Movie not found",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="status", type="string", example="error"),
+     *             @OA\Property(property="message", type="string", example="Movie not found"),
+     *             @OA\Property(property="data", type="array", @OA\Items())
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="Failed to delete movie",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="status", type="string", example="error"),
+     *             @OA\Property(property="message", type="string", example="Failed to delete movie. Please try again."),
+     *             @OA\Property(property="data", type="array", @OA\Items())
+     *         )
+     *     )
+     * )
+     */
+
+    public function deleteMoviesEndpointDocs() {}
+
+
+    /**
      * @OA\Post(
-     *     path="/api/v1/movies/:id/reviews",
+     *     path="/api/v1/admin/movies/:id/reviews",
      *     summary="Submit a Review for a Movie",
      *     description="Submit a rating and comment for a specific movie. Requires authentication.",
      *     tags={"Movies"},
@@ -445,7 +492,7 @@ class SwaggerController extends Controller
      *     )
      * )
      */
-    public function makeREviewsEndpoint() {}
+    public function makeReviewsEndpoint() {}
 
 
     /**
