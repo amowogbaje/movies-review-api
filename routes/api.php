@@ -28,11 +28,11 @@ Route::prefix('v1')->group(function () {
 
     Route::middleware('auth:sanctum')->group(function () {
         Route::post('/movies/{movie}/reviews', [ReviewController::class, 'store'])
-            ->middleware('approved');
+            ->middleware('can:make-reviews');
 
-        Route::prefix('admin')->middleware('can:manage-content')->group(function () {
-            Route::post('/users/{user}/approve', [AdminController::class, 'approveUser']);
-            Route::apiResource('movies', MovieController::class)->except(['index', 'show']);
+        Route::prefix('admin')->group(function () {
+            Route::post('/users/{user}/approve', [AdminController::class, 'approveUser'])->middleware('can:approve-users');
+            Route::apiResource('movies', MovieController::class)->except(['index', 'show'])->middleware('can:manage-movies');
         });
     });
 

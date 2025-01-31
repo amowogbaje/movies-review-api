@@ -3,44 +3,74 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\RegisterRequest;
-use App\Http\Resources\UserResource;
 use App\Models\User;
-use App\Notifications\NewUserRegisteredNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
+use App\Notifications\NewUserRegisteredNotification;
+use Exception;
 
 class AuthController extends Controller
 {
     public function register(Request $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|string|min:8',
-        ]);
+        try {
+            $validated = $request->validate([
+                'name' => 'required|string|max:255',
+                'email' => 'required|email|unique:users',
+                'password' => 'required|string|min:8',
+            ]);
 
-        $user = User::create($validated);
-        
-        // Notify admin
-        $admin = User::where('is_admin', true)->first();
-        $admin->notify(new NewUserRegisteredNotification($user));
+            $user = User::create($validated);
+            
+            // Notify admin
+            $admin = User::where('is_admin', true)->first();
+            if ($admin) {
+                $admin->notify(new NewUserRegisteredNotification($user));
+            }
 
-        return $this->success('Registration successful. Awaiting admin approval.');
+            return $this->success('Registration successful. Awaiting admin approval.');
+
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return $this->error('Validation Error', $e->errors(), 422);
+            
+        } catch (Exception $e) {
+            Log::error('Registration Error: ' . $e->getMessage());
+            return $this->error('Registration failed. Please try again later.', [], 500);
+        }
     }
 
     public function login(Request $request)
     {
-        if (!Auth::attempt($request->only('email', 'password'))) {
-            return $this->error('Invalid credentials', [], 401);
+        try {
+            $validated = $request->validate([
+                'email' => 'required|email',
+                'password' => 'required|string|min:8',
+            ]);
+            if (!Auth::attempt($request->only('email', 'password'))) {
+                return $this->error('Invalid credentials', [], 401);
+            }
+
+            $user = User::where('email', $request->email)->firstOrFail();
+            
+            // Revoke existing tokens
+            $user->tokens()->delete();
+            
+            $token = $user->createToken('auth_token')->plainTextToken;
+
+            return $this->authSuccess('Login successful', $token, [
+                'user' => $user->only('id', 'name', 'email', 'is_approved', 'is_admin')
+            ]);
+
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return $this->error('Validation Error', $e->errors(), 422);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            Log::error('Login Error - User not found: ' . $e->getMessage());
+            return $this->error('User account not found', [], 404);
+            
+        } catch (Exception $e) {
+            Log::error('Login Error: ' . $e->getMessage());
+            return $this->error('Login failed. Please try again.', [], 500);
         }
-
-        $user = User::where('email', $request->email)->firstOrFail();
-        $token = $user->createToken('auth_token')->plainTextToken;
-
-        return $this->authSuccess('Login successful', $token, [
-            'user' => $user->only('id', 'name', 'email', 'is_approved')
-        ]);
     }
 }
