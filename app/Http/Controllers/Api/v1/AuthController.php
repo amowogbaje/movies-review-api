@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use App\Notifications\NewUserRegisteredNotification;
 use Exception;
+use Illuminate\Http\Response;
 
 class AuthController extends Controller
 {
@@ -29,7 +30,7 @@ class AuthController extends Controller
                 $admin->notify(new NewUserRegisteredNotification($user));
             }
 
-            return $this->success('Registration successful. Awaiting admin approval.');
+            return $this->success('Registration successful. Awaiting admin approval.', "", Response::HTTP_CREATED);
 
         } catch (\Illuminate\Validation\ValidationException $e) {
             return $this->error('Validation Error', $e->errors(), 422);

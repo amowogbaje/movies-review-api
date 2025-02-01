@@ -376,7 +376,7 @@ class SwaggerController extends Controller
 
     /**
      * @OA\Delete(
-     *     path="/api/v1/movies/:id",
+     *     path="/api/v1/admin/movies/:id",
      *     summary="Delete a movie",
      *     description="Deletes a specific movie by its ID.",
      *     tags={"Movies"},
@@ -423,7 +423,7 @@ class SwaggerController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/api/v1/admin/movies/:id/reviews",
+     *     path="/api/v1/movies/:id/reviews",
      *     summary="Submit a Review for a Movie",
      *     description="Submit a rating and comment for a specific movie. Requires authentication.",
      *     tags={"Movies"},
