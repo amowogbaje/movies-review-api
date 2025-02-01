@@ -1,9 +1,9 @@
 
-# Library Management System
+# Movie Review Api
 
 ## Overview
 
-This project is a Laravel 10-based library management system. It includes features for managing books, borrow records, and more. The project uses various tools and libraries, including Swagger for API documentation.
+This project is a Laravel 10-based movie review api. It includes features for creating movie records, reviewing movie and viewing movie ratings. The project uses various tools and libraries, including Swagger for API documentation and a postman docs link too.
 
 ## Requirements
 
@@ -11,16 +11,16 @@ This project is a Laravel 10-based library management system. It includes featur
 - Composer
 - Laravel 10.x
 - MySQL or another supported database
-- Node.js and npm (for running frontend assets)
 - [Swagger](http://127.0.0.1:8000/api/docs) (for API documentation)
+- [Postman](http://127.0.0.1:8000/api/docs) (for API documentation)
 
 ## Setup
 
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/amowogbaje/library-management-system-api.git
-cd library-management-system-api
+git clone https://github.com/amowogbaje/movies-review-api 
+cd movies-review-api
 ```
 
 ### 2. Install Dependencies
@@ -95,10 +95,6 @@ Alternatively, you can run PHPUnit directly:
 ```bash
 ./vendor/bin/phpunit
 ```
-
-### 9. Database Diagram
-
-For a visual representation of the database schema, refer to the [DB Diagram](https://dbdiagram.io/d/Library-DB-Diagram-66e16e666dde7f4149c0ed2f).
 
 
 ## License
