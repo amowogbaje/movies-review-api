@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MovieStoreRequest;
+use App\Http\Requests\MovieUpdateRequest;
 use App\Http\Resources\MovieResource;
 use App\Http\Resources\ReviewResource;
 use App\Models\Movie;
@@ -46,7 +47,7 @@ class MovieController extends Controller
         }
     }
 
-    public function update(MovieStoreRequest $request, Movie $movie)
+    public function update(MovieUpdateRequest $request, Movie $movie)
     {
         try {
             $validated = $request->validated();

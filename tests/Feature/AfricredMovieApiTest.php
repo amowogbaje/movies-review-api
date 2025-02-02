@@ -122,6 +122,7 @@ class AfricredMovieApiTest extends TestCase
             'title' => 'New Movie',
             'description' => 'Movie description',
             'thumbnail' => 'http://example.com/image.jpg',
+            'video_url' => 'http://example.com/image.jpg',
             'release_date' => '2024-01-01',
             'genre' => 'Action'
         ]);
@@ -151,7 +152,8 @@ class AfricredMovieApiTest extends TestCase
         $response = $this->withToken($token)->putJson("/api/v1/admin/movies/{$movie->id}", [
             'title' => 'Updated Title',
             'description' => 'Updated description',
-            'thumbnail' => 'http://example.com/new-image.jpg',
+            // 'thumbnail' => 'http://example.com/new-image.jpg',
+            // 'video_url' => 'http://example.com/new-image.jpg',
             'release_date' => '2024-01-01',
             'genre' => 'Comedy'
         ]);

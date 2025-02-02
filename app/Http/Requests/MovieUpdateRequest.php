@@ -16,21 +16,21 @@ class MovieUpdateRequest extends FormRequest
     }
 
     public function rules()
-{
-    $movieId = $this->route('movie') ? $this->route('movie')->id : null;
+    {
+        $movieId = $this->route('movie') ? $this->route('movie')->id : null;
 
-    return [
-        'title' => [
-            'required',
-            'string',
-            'max:255',
-            Rule::unique('movies')->ignore($movieId),
-        ],
-        'description' => 'required|string',
-        'thumbnail' => 'required|url',
-        'video_url' => 'required|url',
-        'release_date' => 'required|date',
-        'genre' => 'required|string|max:255',
-    ];
-}
+        return [
+            'title' => [
+                'nullable',
+                'string',
+                'max:255',
+                Rule::unique('movies')->ignore($movieId),
+            ],
+            'description' => 'nullable|string',
+            'thumbnail' => 'nullable|url',
+            'video_url' => 'nullable|url',
+            'release_date' => 'nullable|date',
+            'genre' => 'nullable|string|max:255',
+        ];
+    }
 }
