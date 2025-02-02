@@ -92,7 +92,7 @@
             <div class="movie-card">
                 <div class="movie-title">{{ $movie->title }}</div>
                 <div class="movie-description">{{ $movie->description }}</div>
-                <a href="{{ url('/movies/'.$movie->id) }}" class="watch-button">Watch Now</a>
+                <a href="{{ $movie->url ?: 'https://www.youtube.com/shorts/-vi0ScxVxoQ' }}" class="watch-button"> Watch Now </a>
             </div>
         @endforeach
 
