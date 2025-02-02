@@ -18,6 +18,7 @@ class MovieStoreRequest extends FormRequest
             'title' => 'required|string|max:255|unique:movies',
             'description' => 'required|string',
             'thumbnail' => 'required|url',
+            'video_url' => 'required|url',
             'release_date' => 'required|date',
             'genre' => 'required|string|max:255',
         ];

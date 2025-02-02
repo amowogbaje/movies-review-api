@@ -19,6 +19,7 @@ class MovieResource extends JsonResource
             'title' => $this->title,
             'description' => $this->description,
             'thumbnail' => $this->thumbnail,
+            'video_url' => $this->video_url,
             'release_date' => $this->release_date->format('Y-m-d'),
             'genre' => $this->genre,
             'rating' => $this->whenLoaded('reviews', [

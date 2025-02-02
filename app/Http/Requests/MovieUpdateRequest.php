@@ -28,6 +28,7 @@ class MovieUpdateRequest extends FormRequest
         ],
         'description' => 'required|string',
         'thumbnail' => 'required|url',
+        'video_url' => 'required|url',
         'release_date' => 'required|date',
         'genre' => 'required|string|max:255',
     ];

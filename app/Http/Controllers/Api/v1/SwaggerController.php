@@ -161,6 +161,7 @@ class SwaggerController extends Controller
      *                     @OA\Property(property="title", type="string", example="Inception"),
      *                     @OA\Property(property="description", type="string", example="A mind-bending thriller about dreams within dreams."),
      *                     @OA\Property(property="thumbnail", type="string", format="url", example="https://example.com/inception.jpg"),
+     *                     @OA\Property(property="video_url", type="string", format="url", example="https://www.youtube.com/shorts/-vi0ScxVxoQ"),
      *                     @OA\Property(property="release_date", type="string", format="date", example="2010-07-16"),
      *                     @OA\Property(property="genre", type="string", example="Science Fiction"),
      *                     @OA\Property(property="rating", type="object",
@@ -199,6 +200,7 @@ class SwaggerController extends Controller
      *             @OA\Property(property="title", type="string", example="Inception Geeno"),
      *             @OA\Property(property="description", type="string", example="A mind-bending thriller about dreams within dreams."),
      *             @OA\Property(property="thumbnail", type="string", format="url", example="https://example.com/inception.jpg"),
+     *             @OA\Property(property="video_url", type="string", format="url", example="https://www.youtube.com/shorts/-vi0ScxVxoQ"),
      *             @OA\Property(property="release_date", type="string", format="date", example="2010-07-16"),
      *             @OA\Property(property="genre", type="string", example="Science Fiction")
      *         )
@@ -214,6 +216,7 @@ class SwaggerController extends Controller
      *                 @OA\Property(property="title", type="string", example="Inception Geeno"),
      *                 @OA\Property(property="description", type="string", example="A mind-bending thriller about dreams within dreams."),
      *                 @OA\Property(property="thumbnail", type="string", format="url", example="https://example.com/inception.jpg"),
+     *                 @OA\Property(property="video_url", type="string", format="url", example="https://www.youtube.com/shorts/-vi0ScxVxoQ"),
      *                 @OA\Property(property="release_date", type="string", format="date", example="2010-07-16"),
      *                 @OA\Property(property="genre", type="string", example="Science Fiction"),
      *                 @OA\Property(property="rating", type="object",
@@ -274,6 +277,7 @@ class SwaggerController extends Controller
      *             @OA\Property(property="title", type="string", example="Inception Geeno Updated"),
      *             @OA\Property(property="description", type="string", example="An updated description."),
      *             @OA\Property(property="thumbnail", type="string", format="url", example="https://example.com/inception_updated.jpg"),
+     *             @OA\Property(property="video_url", type="string", format="url", example="https://www.youtube.com/shorts/-vi0ScxVxoQ"),
      *             @OA\Property(property="release_date", type="string", format="date", example="2010-07-16"),
      *             @OA\Property(property="genre", type="string", example="Science Fiction")
      *         )
@@ -289,6 +293,7 @@ class SwaggerController extends Controller
      *                 @OA\Property(property="title", type="string", example="Inception Geeno Updated"),
      *                 @OA\Property(property="description", type="string", example="An updated description."),
      *                 @OA\Property(property="thumbnail", type="string", example="https://example.com/inception_updated.jpg"),
+     *                 @OA\Property(property="video_url", type="string", example="https://www.youtube.com/shorts/-vi0ScxVxoQ"),
      *                 @OA\Property(property="release_date", type="string", example="2010-07-16"),
      *                 @OA\Property(property="genre", type="string", example="Science Fiction")
      *             )
@@ -350,6 +355,7 @@ class SwaggerController extends Controller
      *                     @OA\Property(property="title", type="string", example="Inception Geeno"),
      *                     @OA\Property(property="description", type="string", example="A mind-bending thriller about dreams within dreams."),
      *                     @OA\Property(property="thumbnail", type="string", format="url", example="https://example.com/inception.jpg"),
+     *                     @OA\Property(property="video_url", type="string", format="url", example="https://www.youtube.com/shorts/-vi0ScxVxoQ"),
      *                     @OA\Property(property="release_date", type="string", format="date", example="2010-07-16"),
      *                     @OA\Property(property="genre", type="string", example="Science Fiction"),
      *                     @OA\Property(property="rating", type="object",
