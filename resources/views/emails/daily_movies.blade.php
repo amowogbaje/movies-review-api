@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>New Movies Available</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,6 +12,7 @@
         }
         .container {
             max-width: 600px;
+            width: 100%;
             background: #ffffff;
             margin: 0 auto;
             padding: 20px;
@@ -42,10 +44,11 @@
             display: inline-block;
             background: #007bff;
             color: white;
-            padding: 8px 15px;
+            padding: 10px 20px;
             text-decoration: none;
             border-radius: 5px;
             font-weight: bold;
+            text-align: center;
         }
         .watch-button:hover {
             background: #0056b3;
@@ -55,6 +58,29 @@
             margin-top: 20px;
             font-size: 12px;
             color: #777;
+        }
+
+        /* Responsive Styles */
+        @media screen and (max-width: 600px) {
+            .container {
+                padding: 15px;
+                border-radius: 5px;
+            }
+            .movie-card {
+                padding: 12px;
+                margin-bottom: 12px;
+            }
+            .movie-title {
+                font-size: 16px;
+            }
+            .movie-description {
+                font-size: 13px;
+            }
+            .watch-button {
+                display: block;
+                width: 100%;
+                padding: 12px 0;
+            }
         }
     </style>
 </head>
