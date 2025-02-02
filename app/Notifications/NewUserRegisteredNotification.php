@@ -30,7 +30,7 @@ class NewUserRegisteredNotification extends Notification
             ->subject('New User Registration')
             ->line('A new user has registered:')
             ->line('Name: ' . $this->user->name)
-            ->line('Email: ' . $this->user->email)
-            ->action('Approve User', url("api/v1/admin/users/{$this->user->id}/approve"));
+            ->line('Email: ' . $this->user->email);
+            // ->action('Approve User', url("api/v1/admin/users/{$this->user->id}/approve"));
     }
 }
