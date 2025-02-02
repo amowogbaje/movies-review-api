@@ -18,7 +18,7 @@ class NewUserRegisteredNotification extends Notification
     {
         return (new MailMessage)
             ->subject('New User Registration')
-            ->line('A new user has registered: ' . $notifiable->email)
-            ->action('Approve User', url("api/v1/admin/users/{$notifiable->id}/approve"));
+            ->line('A new user has registered: ' . $notifiable->email);
+            // ->action('Approve User', url("api/v1/admin/users/{$notifiable->id}/approve"));
     }
 }
